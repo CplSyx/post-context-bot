@@ -95,5 +95,8 @@
   },
   "dev": {
     "subreddit": "post_context_bot_dev"
+  },
+  "marketingAssets": {
+    "icon": "assets/icon.png"
   }
 }
