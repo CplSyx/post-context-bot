@@ -229,10 +229,11 @@ export async function checkPostContext(c: Context): Promise<Response> {
     if (cfg.removePosts) {
 
       await reddit.remove(t3(postId), false);
-
+      let removalText:string = cfg.removalReasonText.replace('{minutes}', String(cfg.minutes));
+      removalText = removalText.replace('{characters}', String(cfg.characters));
       const rc = await reddit.submitComment({
         id: t3(postId),
-        text: `${cfg.removalReasonText}\n\n*(Reason: ${reason})*\n\n${cfg.botFooter}`,
+        text: `${removalText}\n\n*(Reason: ${reason})*\n\n${cfg.botFooter}`,
         runAs: 'APP',
       });
       await rc.distinguish(true);
@@ -240,11 +241,13 @@ export async function checkPostContext(c: Context): Promise<Response> {
 
     } else {
 
+      let reportText:string = cfg.reportReason.replace('{minutes}', String(cfg.minutes));
+      reportText = reportText.replace('{characters}', String(cfg.characters));
       const postObj = await reddit.getPostById(t3(postId));
       await reddit.report(postObj, { reason: reason });
       const rc = await reddit.submitComment({
         id: t3(postId),
-        text: `${cfg.reportReason}\n\n${cfg.botFooter}`,
+        text: `${reportText}\n\n${cfg.botFooter}`,
         runAs: 'APP',
       });
       await rc.distinguish(true);
