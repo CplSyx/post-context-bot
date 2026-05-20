@@ -10,7 +10,7 @@ This is based on https://github.com/CplSyx/reddit-submission-statement-bot, whic
 
 1. **Install this app  to your subreddit**
 2. **Configure the settings**: defaults are provided out of the box
-3. **Enjoy the additional context!** in `devvit.json`:
+3. **Enjoy the additional context!**
 
 ## Project Structure
 
@@ -29,3 +29,10 @@ The source code for this bot is available here: https://github.com/CplSyx/post-c
 Please raise any issues on Github if there are source code errors or improvements, or feature requests!
 
 
+### Development Notes
+- `npm run dev`: Starts development mode with live reload on your test subreddit
+
+- `npm run deploy`: Uploads a new version of your app to Reddit
+- `npm run launch`: Publishes your app for review and public use
+
+Change the settings (e.g. 1 minute and 10 characters) to validate functionality!

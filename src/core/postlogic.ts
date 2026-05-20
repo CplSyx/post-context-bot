@@ -148,7 +148,7 @@ export async function checkPostContext(c: Context): Promise<Response> {
     //Get the bot comment
     const botCommentFullId = t1(botCommentId);
     const botComment = await reddit.getCommentById(t1(botCommentId));
-    botComment.undistinguish();
+    await botComment.undistinguish();
 
     //We use the replies to the bot comment. If we use post.comments.all() that only gets TOP LEVEL comments... no good to us.
     const replies = await botComment.replies.all();
