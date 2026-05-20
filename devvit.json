@@ -1,0 +1,99 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "post-context-bot",
+  "server": {
+    "dir": "dist/server",
+    "entry": "index.cjs"
+  },
+  "triggers": {
+    "onAppInstall": "/internal/triggers/on-app-install",
+    "onPostSubmit": "/internal/triggers/on-post-submit"
+  },
+  "scheduler": {
+    "tasks": {
+      "checkPostContext": {
+        "endpoint": "/internal/triggers/check-post-context"
+      }
+    }
+  },
+  "settings": {
+    "subreddit": {
+      "minutesToWait": {
+        "label": "Minutes to wait for a Post Context statement",
+        "helpText": "Minimum 1. Default 15.",
+        "type": "number",
+        "defaultValue": 15
+      },
+      "minCharLength": {
+        "label": "Minimum character length for a valid SPost Context statement",
+        "helpText": "Default 100.",
+        "type": "number",
+        "defaultValue": 100
+      },
+      "requiredWords": {
+        "label": "Optional - Any required words in Post Context statement (comma-separated, leave blank for none)",
+        "helpText": "e.g. source,context,IRTR - all listed words must appear in the Post Context statement.",
+        "type": "string",
+        "defaultValue": ""
+      },
+      "removePosts": {
+        "label": "Remove non-compliant posts? (false = report only)",
+        "type": "boolean",
+        "defaultValue": true
+      },
+      "pinRequest": {
+        "label": "Pin the Post Context statement request comment?",
+        "type": "boolean",
+        "defaultValue": true
+      },
+      "pinResponse": {
+        "label": "Pin the Post Context statement confirmation comment?",
+        "type": "boolean",
+        "defaultValue": false
+      },
+      "useSpoilerTags": {
+        "label": "Wrap quoted Post Context statement text in spoiler tags?",
+        "type": "boolean",
+        "defaultValue": true
+      },
+      "removeRequestComment": {
+        "label": "Delete the Post Context statement request comment after the check is complete?",
+        "type": "boolean",
+        "defaultValue": true
+      },
+      "ssRequestText": {
+        "label": "Body of the Post Context statement request comment (use {minutes} and {characters} as placeholders)",
+        "type": "paragraph",
+        "defaultValue": "We require that posters submit an explanation (a.k.a. a Post Context statement) for why their post is relevant to this subreddit. \n\nPlease **reply to this comment** within the next {minutes} minutes with a suitable submission statement that is at least {characters} characters in length."
+      },
+      "removalReasonText": {
+        "label": "Text posted when a post is removed (use {minutes} and {characters} as placeholders)",
+        "type": "paragraph",
+        "defaultValue": "We require that posters submit an explanation (a.k.a. a Post Context statement) for why their post is relevant to this subreddit. Your post has been removed as it is missing this requirement.\n\nIf you wish to share your post with the community, you will need to resubmit your post and respond to the automated prompt with a submission statement of at least {characters} characters."
+      },
+      "reportReason": {
+        "label": "Text posted when a post is reported (use {minutes} and {characters} as placeholders)",
+        "type": "paragraph",
+        "defaultValue": "We require that posters submit an explanation (a.k.a. a Post Context statement) for why their post is relevant to this subreddit.\n\nYour post has been reported for moderator attention as you have not provided this."
+      },
+      "botFooter": {
+        "label": "Footer appended to every bot comment",
+        "type": "paragraph",
+        "defaultValue": "*I am a bot, and this action was performed automatically. Please contact the moderators of this subreddit if you have any questions or concerns.*"
+      }
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "permissions": {
+    "reddit": {
+      "scope": "moderator"
+    },
+    "redis": true
+  },
+  "dev": {
+    "subreddit": "post_context_bot_dev"
+  }
+}
