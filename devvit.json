@@ -25,7 +25,7 @@
         "defaultValue": 15
       },
       "minCharLength": {
-        "label": "Minimum character length for a valid SPost Context statement",
+        "label": "Minimum character length for a valid Post Context statement",
         "helpText": "Default 100.",
         "type": "number",
         "defaultValue": 100
@@ -64,12 +64,12 @@
       "ssRequestText": {
         "label": "Body of the Post Context statement request comment (use {minutes} and {characters} as placeholders)",
         "type": "paragraph",
-        "defaultValue": "We require that posters submit an explanation (a.k.a. a Post Context statement) for why their post is relevant to this subreddit. \n\nPlease **reply to this comment** within the next {minutes} minutes with a suitable submission statement that is at least {characters} characters in length."
+        "defaultValue": "We require that posters submit an explanation (a.k.a. a Post Context statement) for why their post is relevant to this subreddit. \n\nPlease **reply to this comment** within the next {minutes} minutes with a suitable Post Context statement that is at least {characters} characters in length."
       },
       "removalReasonText": {
         "label": "Text posted when a post is removed (use {minutes} and {characters} as placeholders)",
         "type": "paragraph",
-        "defaultValue": "We require that posters submit an explanation (a.k.a. a Post Context statement) for why their post is relevant to this subreddit. Your post has been removed as it is missing this requirement.\n\nIf you wish to share your post with the community, you will need to resubmit your post and respond to the automated prompt with a submission statement of at least {characters} characters."
+        "defaultValue": "We require that posters submit an explanation (a.k.a. a Post Context statement) for why their post is relevant to this subreddit. Your post has been removed as it is missing this requirement.\n\nIf you wish to share your post with the community, you will need to resubmit your post and respond to the automated prompt with a Post Context statement of at least {characters} characters."
       },
       "reportReason": {
         "label": "Text posted when a post is reported (use {minutes} and {characters} as placeholders)",

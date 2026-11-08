@@ -59,8 +59,8 @@ export async function handleNewPost(c: Context): Promise<Response> {
     const cfg = await getSettings();
 
     //Generate the request comment and replace the placeholders with relevant values from the settings
-    let requestText:string = cfg.ssRequestText.replace('{minutes}', String(cfg.minutes));
-    requestText = requestText.replace('{characters}', String(cfg.characters));
+    let requestText:string = cfg.ssRequestText.replaceAll('{minutes}', String(cfg.minutes));
+    requestText = requestText.replaceAll('{characters}', String(cfg.characters));
 
     //Submit the comment to the post, and grab the return as a variable so we can use it later
     const requestComment = await reddit.submitComment({
@@ -229,8 +229,8 @@ export async function checkPostContext(c: Context): Promise<Response> {
     if (cfg.removePosts) {
 
       await reddit.remove(t3(postId), false);
-      let removalText:string = cfg.removalReasonText.replace('{minutes}', String(cfg.minutes));
-      removalText = removalText.replace('{characters}', String(cfg.characters));
+      let removalText:string = cfg.removalReasonText.replaceAll('{minutes}', String(cfg.minutes));
+      removalText = removalText.replaceAll('{characters}', String(cfg.characters));
       const rc = await reddit.submitComment({
         id: t3(postId),
         text: `${removalText}\n\n*(Reason: ${reason})*\n\n${cfg.botFooter}`,
@@ -241,8 +241,8 @@ export async function checkPostContext(c: Context): Promise<Response> {
 
     } else {
 
-      let reportText:string = cfg.reportReason.replace('{minutes}', String(cfg.minutes));
-      reportText = reportText.replace('{characters}', String(cfg.characters));
+      let reportText:string = cfg.reportReason.replaceAll('{minutes}', String(cfg.minutes));
+      reportText = reportText.replaceAll('{characters}', String(cfg.characters));
       const postObj = await reddit.getPostById(t3(postId));
       await reddit.report(postObj, { reason: reason });
       const rc = await reddit.submitComment({
